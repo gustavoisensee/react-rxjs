@@ -1,10 +1,13 @@
 import { Subject } from 'rxjs';
 
-let counter = 0;
+const store = {
+  counter: 0
+}
 
 export const counterSubject = new Subject();
 
 export const updateCounter = (value) => {
-  counter = (counter + value) || 0;
-  counterSubject.next(counter);
-}
+  store.counter = (store.counter + value);
+
+  counterSubject.next(store.counter);
+};

@@ -1,5 +1,5 @@
 import React from 'react';
-import { updateCounter } from '../observables';
+import { updateCounter } from '../../observables/counter';
 
 const View = () => (
   <div>
