@@ -4,14 +4,15 @@ import { counterSubject } from '../../observables/counter';
 const View = () => {
   const [counter, setCounter] = useState(0);
 
-  useEffect(() => {
-    const subs = counterSubject
-      .subscribe(value => setCounter(value));
+  const next = value => setCounter(value);
 
-    return () => {
-      if (subs) subs.unsubscribe();
-    }
-  }, []);
+  const counterSubscription = () => {
+    const subs = counterSubject.subscribe(next);
+
+    return () => subs && subs.unsubscribe();
+  };
+
+  useEffect(counterSubscription, []);
 
   return (
     <h1>{counter}</h1>
